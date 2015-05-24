@@ -16,14 +16,14 @@ textarea {
     resize: vertical;
 }
 
+/* Sass nesting feature, h1 auto inherits the .center context */
 .center {
     text-align: center;
-}
 
-.center h1 {
-    margin-bottom: 10px;
+    h1 {
+        margin-bottom: 10px;
+    }
 }
-
 
 /* typography */
 
@@ -54,6 +54,8 @@ p {
 
 /* header */
 
+
+/* & for hover is used to reference the logo id */
 #logo {
     float: left;
     margin-right: 10px;
@@ -63,11 +65,10 @@ p {
     letter-spacing: -1px;
     padding-top: 9px;
     font-weight: bold;
-}
-
-#logo:hover {
-    color: #fff;
-    text-decoration: none;
+    &:hover {
+        color: #fff;
+        text-decoration: none;
+    }
 }
 
 /* footer */
@@ -81,10 +82,10 @@ footer {
 
 footer a {
     color: #555;
-}
 
-footer a:hover {
-    color: #222;
+    &:hover {
+        color: #222;
+    }
 }
 
 footer small {
@@ -94,13 +95,12 @@ footer small {
 footer ul {
     float:right;
     list-style: none;
-}
 
-footer ul li {
-    float: left;
-    margin-left: 15px;
+    li {
+        float: left;
+        margin-left: 15px;
+    }
 }
-
 
 
 
