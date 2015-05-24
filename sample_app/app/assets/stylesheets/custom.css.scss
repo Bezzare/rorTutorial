@@ -2,7 +2,7 @@
 @import "bootstrap";
 
 /* variable */
-$light-grey: #777;
+/* $light-gray: #777; */
 
 
 /* universal */
@@ -47,7 +47,7 @@ h2 {
     margin-bottom: 30px;
     text-align: center;
     font-weight: normal;
-    color: $light-grey;
+    color: $gray-light;
 }
 
 p {
@@ -80,7 +80,7 @@ footer {
     margin-top: 45px;
     padding-top: 5px;
     border-top: 1px solid #eaeaea;
-    color: $light-grey;
+    color: $gray-light;
 }
 
 footer a {
