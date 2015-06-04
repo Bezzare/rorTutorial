@@ -11,7 +11,6 @@ module SessionsHelper
     # Log in the given user
     def log_in(user)
         session[:user_id] = user.id
-        remember user
     end
 
     # Return the current logged-in user, if any
