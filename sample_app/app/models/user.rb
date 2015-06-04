@@ -35,6 +35,11 @@ class User < ActiveRecord::Base
         # the "==" above is redefined as below:
         BCrypt::Password.new(remember_digest).is_password?(remember_token)
     end
+
+    # Forget a user
+    def forget
+        update_attribute(:remember_digest, nil)
+    end
 end
 
 
