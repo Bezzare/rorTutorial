@@ -30,7 +30,7 @@ class ActiveSupport::TestCase
   private
     # Returns true inside an integration test.
     def integration_test?
-        #
+        # post_via_redirect is available only in integration test
         defined?(post_via_redirect)
     end
 end
