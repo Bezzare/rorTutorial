@@ -10,7 +10,6 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
         get users_path
         assert_template 'users/index'
         # FIXME: div.pagination test failed,
-        # TODO: aa
         # assert_select 'div.pagination'
         User.paginate(page: 1).each do |user|
             assert_select 'a[href=?]', user_path(user), text: user.name
