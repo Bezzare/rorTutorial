@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def index
     # @users = User.all
+    # pagination, default per_page: 30
     @users = User.paginate(page: params[:page])
   end
 
