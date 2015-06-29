@@ -77,6 +77,8 @@ class User < ActiveRecord::Base
     # See "Following users" for the full implementation
     def feed
         Micropost.where("user_id = ?", id)
+        # above is equivalent to below:
+        # microposts
     end
 
 
