@@ -54,14 +54,16 @@ RSpec.describe User, type: :model do
     it "destroys associated microposts" do
       user.save
       user.microposts.create!(content: "Lorem ipsum")
-      count_was = Micropost.count
-      expect { user.destroy }.to change{ Micropost.count }.from(count_was).to(count_was-1)
+      # count_was = Micropost.count
+      # expect { user.destroy }.to change{ Micropost.count }.from(count_was).to(count_was-1)
+      expect { user.destroy }.to change(Micropost, :count).by(-1)
     end
   end
 
   context "when follows/unfollows a user" do
     it "should follow a user" do
       michael = users(:michael)
+      # mm = build(:michael)
       archer = users(:archer)
       expect(michael.following?(archer)).not_to be true
       michael.follow(archer)
