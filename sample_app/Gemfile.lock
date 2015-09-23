@@ -77,6 +77,8 @@ GEM
     erubis (2.7.0)
     excon (0.45.3)
     execjs (2.5.2)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
     ffi (1.9.8)
@@ -293,6 +295,7 @@ DEPENDENCIES
   byebug
   carrierwave (= 0.10.0)
   coffee-rails (~> 4.1.0)
+  factory_girl
   faker
   figaro
   fog (= 1.23.0)
