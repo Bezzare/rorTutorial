@@ -62,6 +62,8 @@ group :development, :test do
 
   # Make fake users
   gem 'faker'
+
+  gem "rspec-rails"
 end
 
 group :test do
