@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
+  fixtures :users
   let(:user) { User.new(name: "Example User", email: "user@example.com",
                         password: "foobar", password_confirmation: "foobar") }
 
@@ -55,6 +56,20 @@ RSpec.describe User, type: :model do
       user.microposts.create!(content: "Lorem ipsum")
       count_was = Micropost.count
       expect { user.destroy }.to change{ Micropost.count }.from(count_was).to(count_was-1)
+    end
+  end
+
+  context "when follows/unfollows a user" do
+    it "should follow a user" do
+      michael = users(:michael)
+      archer = users(:archer)
+      expect(michael.following?(archer)).not_to be true
+      michael.follow(archer)
+      expect(michael.following?(archer)).to be true
+      expect(archer.followers).to include(michael)
+
+      michael.unfollow(archer)
+      expect(michael.following?(archer)).not_to be true
     end
   end
 
