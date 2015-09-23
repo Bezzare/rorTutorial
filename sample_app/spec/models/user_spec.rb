@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  fixtures :users
   let(:user) { User.new(name: "Example User", email: "user@example.com",
                         password: "foobar", password_confirmation: "foobar") }
+  let(:michael) { create(:michael) }
+  let(:archer) { create(:archer) }
+  let(:lana) { create(:lana) }
 
   describe "#attributes" do
     it "is valid" do
@@ -62,8 +64,6 @@ RSpec.describe User, type: :model do
 
   context "when follows/unfollows a user" do
     it "should follow a user" do
-      michael = users(:michael)
-      archer = users(:archer)
       expect(michael.following?(archer)).not_to be true
       michael.follow(archer)
       expect(michael.following?(archer)).to be true
@@ -74,25 +74,32 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context "verifying feeds" do
+  context "verifying feed" do
 
-    let(:michael) { build(:michael) }
-    let(:archer) { build(:archer) }
-    let(:lana) { build(:lana) }
+    # create relationships
+    before(:all) do
+      create(:one)
+      create(:two)
+      create(:three)
+      create(:four)
+    end
 
-    it "verifies feed include posts from followed user" do
+    it "includes posts from followed user" do
+      mp = create_list(:micropost, 3)
+      mp = create_list(:micropost, 2, user: lana)
+
       lana.microposts.each do |post_following|
         expect(michael.feed).to include(post_following)
       end
     end
 
-    it "verifies feed include posts from self" do
+    it "includes posts from self" do
       michael.microposts.each do |post_self|
         expect(michael.feed).to include(post_self)
       end
     end
 
-    it "verifies feed not include posts from unfollowed user" do
+    it "not include posts from unfollowed user" do
       archer.microposts.each do |post_unfollowed|
         expect(michael.feed).not_to include(post_unfollowed)
       end
