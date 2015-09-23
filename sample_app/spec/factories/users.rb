@@ -5,6 +5,7 @@ FactoryGirl.define do
     password_digest User.digest('password')
     activated true
     activated_at Time.zone.now
+    initialize_with { User.where(email: email).first_or_create }
 
     factory :michael do
       name "Michael Example"
