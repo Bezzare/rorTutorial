@@ -73,6 +73,31 @@ RSpec.describe User, type: :model do
     end
   end
 
+  context "verifying feeds" do
+
+    let(:michael) { users(:michael) }
+    let(:archer) { users(:archer) }
+    let(:lana) { users(:lana) }
+
+    it "verifies feed include posts from followed user" do
+      lana.microposts.each do |post_following|
+        expect(michael.feed).to include(post_following)
+      end
+    end
+
+    it "verifies feed include posts from self" do
+      michael.microposts.each do |post_self|
+        expect(michael.feed).to include(post_self)
+      end
+    end
+
+    it "verifies feed not include posts from unfollowed user" do
+      archer.microposts.each do |post_unfollowed|
+        expect(michael.feed).not_to include(post_unfollowed)
+      end
+    end
+  end
+
 end
 
 
