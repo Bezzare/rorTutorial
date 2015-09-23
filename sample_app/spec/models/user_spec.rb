@@ -63,7 +63,6 @@ RSpec.describe User, type: :model do
   context "when follows/unfollows a user" do
     it "should follow a user" do
       michael = users(:michael)
-      # mm = build(:michael)
       archer = users(:archer)
       expect(michael.following?(archer)).not_to be true
       michael.follow(archer)
@@ -77,9 +76,9 @@ RSpec.describe User, type: :model do
 
   context "verifying feeds" do
 
-    let(:michael) { users(:michael) }
-    let(:archer) { users(:archer) }
-    let(:lana) { users(:lana) }
+    let(:michael) { build(:michael) }
+    let(:archer) { build(:archer) }
+    let(:lana) { build(:lana) }
 
     it "verifies feed include posts from followed user" do
       lana.microposts.each do |post_following|
